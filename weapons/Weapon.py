@@ -16,10 +16,3 @@ class Weapon:
         else:
             print("Draw your weapon first!")
             return 0
-
-    def heavy_attack(self):
-        if self.drawn:
-            return self._damage * 2
-        else:
-            print("Draw your weapon first!")
-            return 0

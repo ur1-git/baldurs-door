@@ -1,30 +1,31 @@
-from RollDice import RollDice
-from character.attributes import Strength
-from character.attributes import Dexterity
-from character.attributes import Constitution
-from weapons import Weapon
 
+from character.attributes.Strength import Strength
+from character.attributes.Constitution import Constitution
+from character.attributes.Dexterity import Dexterity
+from character.attributes.Mind import Mind
+from weapons.Weapon import Weapon
+from armors.Armor import Armor
 
 class Character:
-    def __init__(self, name, life: int, weapon: Weapon, constitution: Constitution, strength: Strength, dexterity: Dexterity):
+    def __init__(self, name):
         self.name = name
-        self.weapon = weapon
+        self.weapon = Weapon("stick", 1)
+        self.armor = Armor("clothes", 0)
         self.dead = False
 
+
         # stats
-        self.constitution = constitution
-        self.strength = strength
-        self.dexterity = dexterity
-        # magic
+        self.constitution = Constitution(1)
+        self.strength = Strength(1)
+        self.dexterity = Dexterity(1)
+        self.mind = Mind(1)
 
-    def get_life(self):
-        return self._life
 
-    def set_life(self, new_life: int):
-        if new_life <= 0:
-            self._life = 0
-            print(self.name, " just died!")
-            self.dead = True
-        else:
-            self._life = new_life
-            self.dead = False
+    def physic_attacked(self, damage: int):
+        if self.dexterity.is_evading():
+            print(self.name, ": Attack evaded!")
+            return
+        self.constitution.block_physic(damage, self.armor) # it already changes life
+
+    def mind_attacked(self):
+        self.constitution.receive_damage(self.mind.mind_attacked())

@@ -8,5 +8,5 @@ if __name__ == '__main__':
     enemies.append(Character("Orc", 20, sword_catalog.create_weapon("wood_sword")))
     enemies.append(Character("Bandit", 10, sword_catalog.create_weapon("iron_sword")))
 
-    player.attack(enemies[1], player.)
+    player.attack()
 

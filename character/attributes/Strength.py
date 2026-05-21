@@ -1,14 +1,14 @@
-from character.Character import Character
+from character.attributes.Attribute import Attribute
 from weapons.Weapon import Weapon
 
 
-class Strength:
-    def __init__(self, strength: int):
-        self._strength = strength
+class Strength(Attribute):
+    def __init__(self, stat):
+        super().__init__(stat)
 
     def physic_attack(self, weapon: Weapon):
         """
-        Returns damage as an int.
+        Returns damage as: weapon damage + strength points
         :return: int
         """
-        return weapon.normal_attack() + self._strength * 0.35
+        return weapon.normal_attack() + self.stat

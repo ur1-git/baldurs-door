@@ -2,7 +2,7 @@ class Weapon:
     def __init__(self, name: str, damage: int):
         self.name = name
         self._damage = damage
-        self.drawn = False
+        self.drawn = True
 
     def draw(self):
         self.drawn = True

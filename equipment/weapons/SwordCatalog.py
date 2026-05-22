@@ -1,8 +1,6 @@
-from weapons import WeaponCatalog
-from weapons.Weapon import Weapon
+from equipment.EquipmentCatalog import EquipmentCatalog
 
-class SwordCatalog(WeaponCatalog):
-
+class SwordCatalog(EquipmentCatalog):
     #Override
     def __init__(self):
         self.weapons = {
@@ -10,3 +8,7 @@ class SwordCatalog(WeaponCatalog):
             "iron_sword": {"name": "iron sword", "damage": 20},
             "death_sword": {"name": "death sword", "damage": 50},
         }
+
+    def create_equipment(self, equipment_type: str):
+        data = self.equipments[equipment_type]
+        return Sword(data["name"], data["damage"])

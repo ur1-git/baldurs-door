@@ -1,12 +1,27 @@
-from character.Character import Character
-from weapons.SwordCatalog import SwordCatalog
+
+from character.Player import Player
+from character.attributes.Shop import Shop
+from items.HealthPotion import HealthPotion
+from equipment.weapons.SwordCatalog import SwordCatalog
 
 if __name__ == '__main__':
     sword_catalog = SwordCatalog()
-    player = Character("Thyrion", 100, sword_catalog.create_weapon("iron_sword"))
+    player = Player("Thyrion")
     enemies = []
-    enemies.append(Character("Orc", 20, sword_catalog.create_weapon("wood_sword")))
-    enemies.append(Character("Bandit", 10, sword_catalog.create_weapon("iron_sword")))
+    enemies.append(Player("Orc"))
+    enemies.append(Player("Bandit"))
 
-    player.attack()
+    shop = Shop()
 
+    player.status()
+    player.constitution.improve_stat(30)
+
+    player.weapon_attack(enemies[1])
+    player.inventory.add_item(HealthPotion("health_potion_III", 50))
+
+    player.status()
+
+    player.use_inventory_item("health_potion_III")
+    shop.buy_armor("leather_armor", player)
+
+    player.status()

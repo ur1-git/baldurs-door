@@ -1,5 +1,5 @@
 from character.attributes.Attribute import Attribute
-from weapons.Weapon import Weapon
+from equipment.weapons.Weapon import Weapon
 
 
 class Strength(Attribute):

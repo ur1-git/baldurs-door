@@ -1,5 +1,5 @@
 import RollDice
-from armors.Armor import Armor
+from equipment.armors.Armor import Armor
 from character.attributes.Attribute import Attribute
 
 
@@ -10,8 +10,8 @@ class Constitution (Attribute):
         self.dead = False
         self.block_chance = stat * 0.5
 
-    def improve_stat(self):
-        self.stat += self.stat
+    def improve_stat(self, amount: int = 1):
+        self.stat += amount
         self.block_chance = self.stat * 0.5
 
 
@@ -28,19 +28,18 @@ class Constitution (Attribute):
 
     def receive_healing(self, healing):
         if self.dead:
-            print("Can't be healed because he/she is dead!")
+            print("Can't be healed because is dead!")
             return
-        new_life = self.life + healing
-        if self.life > self.stat:
-            self.life = self.stat
-            print("Have healed to max health")
-        else:
-            self.life = new_life
-            print("Have been healed ", healing, "hp")
+
+        old_life = self.life
+        self.life = min(self.life + healing, self.stat)
+        total_healed = self.life - old_life
+
+        print("Have been healed ", total_healed, "hp")
 
 
     def block_reduction(self, armor: Armor):
-        return 1 - armor.block_reduction / 100
+        return 1 - armor.value / 100
 
 
     def block_physic(self, damage: int, armor: Armor):

@@ -1,6 +1,7 @@
-from armors.Armor import Armor
+from equipment.EquipmentCatalog import EquipmentCatalog
+from equipment.armors.Armor import Armor
 
-class ArmorCatalog:
+class ArmorCatalog(EquipmentCatalog):
 
     def __init__(self):
         self.armors = {
@@ -11,6 +12,6 @@ class ArmorCatalog:
         }
 
 
-    def create_armor(self, armor_name: str):
+    def create_equipment(self, armor_name: str):
         data = self.armors[armor_name]
-        return Armor(data["name"], data["damage"])
+        return Armor(data["name"], data["block_reduction"])

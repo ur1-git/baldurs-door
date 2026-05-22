@@ -1,7 +1,9 @@
-class Weapon:
+from equipment.Equipment import Equipment
+
+
+class Weapon(Equipment):
     def __init__(self, name: str, damage: int):
-        self.name = name
-        self._damage = damage
+        super().__init__(name, damage)
         self.drawn = True
 
     def draw(self):
@@ -12,7 +14,7 @@ class Weapon:
 
     def normal_attack(self):
         if self.drawn:
-            return self._damage
+            return self.value
         else:
             print("Draw your weapon first!")
             return 0

@@ -3,7 +3,7 @@ from character.attributes.Attribute import Attribute
 
 class Mind(Attribute):
     def __init__(self, stat):
-        super().__init__(self, stat)
+        super().__init__(stat)
         self.mana = stat
 
     def use_mana(self, required_mana) -> bool:
